@@ -11,11 +11,15 @@ import {
   Switch,
 } from 'react-router-dom';
 import { routes } from './core';
+import '@shopify/polaris/build/esm/styles.css';
+import enTranslations from '@shopify/polaris/locales/en.json';
+import { AppProvider, Page, Card, Button } from '@shopify/polaris';
 
 const App: FC = () => {
   return (
-  <MuiThemeProvider theme={theme}>
-    <CssBaseline />
+  // <MuiThemeProvider theme={theme}>
+  //   <CssBaseline />
+  <AppProvider i18n={enTranslations}>
     <Router>
       <NavBar />
       <Switch>
@@ -25,7 +29,8 @@ const App: FC = () => {
         <Redirect to={routes.index} />
       </Switch>
     </Router>
-  </MuiThemeProvider>
+  </AppProvider>
+  // </MuiThemeProvider>
   );
 }
 
