@@ -1,25 +1,74 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { StyleProps } from '@styles';
-import { Typography, Grid, Paper } from '@material-ui/core';
+import { Typography, Paper } from '@material-ui/core';
 import { colors } from '../../styles/colors';
+import { Button, Checkbox, Form, FormLayout, TextField, Select } from '@shopify/polaris';
+import { User } from '../../utils/types';
 
-type Props = StyleProps;
+interface Props extends StyleProps {
+    user?: User;
+}
 
-const Home: FC<Props> = ({ style }) => {
+const Home: FC<Props> = ({ user }) => {
     const classes = useStyles()
-    return (
-        <div className={classes.container} style={style}>
-            <Paper className={classes.paperForm1}>
 
-            </Paper>
+    useEffect(()=>console.log(user),[user])
+
+    return (
+        <div className={classes.container}>
+            <div className={classes.paperForm1}>
+                <Typography className={classes.header}>{user?.first_name}{'   '}{user?.last_name}</Typography>
+
+            </div>
         
-            <Paper className={classes.paperForm2}>
+            <div className={classes.paperForm2}>
                 <Typography className={classes.header}>User profile</Typography>
                 <div className={classes.formWrapper}>
-
+                    <div>
+                        <FormLayout>
+                            <TextField
+                                value={user?.title || ''}
+                                readOnly
+                                label="Job Title"
+                                name="title"
+                                type="text"
+                                autoComplete="off"
+                            />
+                            <TextField
+                                value={user?.current_company || ''}
+                                readOnly
+                                label="Current Company"
+                                name="currentCompany"
+                                type="text"
+                                autoComplete="off"
+                            />
+                            <TextField
+                                label="About Myself"
+                                value={user?.bio || ''}
+                                readOnly
+                                multiline={6}
+                                autoComplete="off"
+                            />
+                             <TextField
+                                label="About Myself"
+                                value={user?.phone || ''}
+                                readOnly
+                                autoComplete="off"
+                                type="text"
+                                connectedLeft={
+                                    <Select
+                                      value={user?.country_code || ''}
+                                      label="countryCode"
+                                      labelHidden
+                                      options={['+972']}
+                                    />
+                                  }
+                            />
+                        </FormLayout>
+                    </div>
                 </div>
-            </Paper>
+            </div>
         </div>
     );
 };
@@ -32,6 +81,10 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: colors.grey,
         padding: 20,
         paddingTop: 141,
+        [theme.breakpoints.down('sm')]:{
+            flexDirection: 'column',
+            alignItems: 'center',
+        }
     },
     paperForm1: {
         display: 'flex',
@@ -44,6 +97,12 @@ const useStyles = makeStyles(theme => ({
         borderRadius: 15,
         height: 196,
         marginRight: 30,
+        boxShadow: '0px 2px 4px rgba(194, 194, 194, 0.25)',
+        [theme.breakpoints.down('sm')]:{
+            marginBottom: 26,
+            maxWidth: 635,
+            marginRight: 0,
+        }
     },
     paperForm2: {
         display: 'flex',
@@ -54,6 +113,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: 15,
         maxWidth: 635,
         width: '100%',
+        boxShadow: '0px 2px 4px rgba(194, 194, 194, 0.25)',
     },
     header: {
         fontSize: 20,
@@ -69,7 +129,7 @@ const useStyles = makeStyles(theme => ({
         padding: 20,
         maxWidth: 594,
         width: '100%',
-        height: 595,
+        // height: 595,
         background: colors.darkGrey,
         borderRadius: 8,
 

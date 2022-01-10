@@ -6,6 +6,9 @@ const test5 = [1,2,3,2,1]; // 5
 const test6 = [1,2,3,4,5]; // 0
 
 
+// https://stackoverflow.com/questions/62928255/i-want-to-return-the-length-of-the-longest-mirror-sub-section-in-an-array
+
+
 // iterating forwards and backward simoultaneously 
 // stop loop when current num and current end are the same element
 // k is the start of the array

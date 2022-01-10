@@ -21,15 +21,15 @@ const NavBarLayout: FC<Props> = ({ style }) => {
             <Container className={classes.container}>
                 <div className={classes.navigationBar}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                        {/* <img 
+                        <img 
                             onClick={()=> !isMobile ? history.push('/') : undefined}
                             src={Logo} 
                             style={{ 
-                                height: isMobile ? open ? 36 : 52 : 104, 
+                                height: 22, 
                                 cursor: 'pointer' ,
-                                display: isMobile ? 'none' : 'initial'
+                                display: 'initial'
                             }} 
-                        /> */}
+                        />
                     </div>
                     {isMobile && (
                         open ? 
@@ -84,14 +84,16 @@ const NavBarLayout: FC<Props> = ({ style }) => {
             marginBottom: 16,
         }
     },
-    menuToggle: {},
+    menuToggle: {
+        position: 'absolute',
+        left: 10
+    },
     mobileMenu: {
         height: '100%',
         backgroundColor: colors.purple,
         width: '100%',
         display: 'flex',
         zIndex: 990,
-        position: 'fixed',
     },
     navigationBar: {
         display: 'flex',
@@ -101,7 +103,7 @@ const NavBarLayout: FC<Props> = ({ style }) => {
         height: '100%',
         position: 'relative',
         [theme.breakpoints.down('sm')]:{
-            justifyContent: 'start',
+            justifyContent: 'center',
         }
     },
   }))
