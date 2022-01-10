@@ -3,9 +3,9 @@ import { colors, StyleProps } from '../../styles';
 import { AppBar, Container, useMediaQuery, useTheme, Button, makeStyles } from '@material-ui/core';
 import Logo from '../../assets/images/Logo.png';
 import { FiMenu, FiX } from 'react-icons/fi';
-import SocialSection from '../../components/SocialSection';
 import { useHistory } from 'react-router-dom';
-import NavMenuItem from './components/NavMenuItem';
+import ProfileAvatar from '../../components/ProfileAvatar';
+import { routes } from '../../core/routes';
 
 type Props = StyleProps;
 
@@ -20,17 +20,16 @@ const NavBarLayout: FC<Props> = ({ style }) => {
         <AppBar position="fixed" className={classes.appBar}>
             <Container className={classes.container}>
                 <div className={classes.navigationBar}>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <img 
-                            onClick={()=> !isMobile ? history.push('/') : undefined}
-                            src={Logo} 
-                            style={{ 
-                                height: 22, 
-                                cursor: 'pointer' ,
-                                display: 'initial'
-                            }} 
-                        />
-                    </div>
+                    <img 
+                        onClick={()=>history.push(routes.index)}
+                        src={Logo} 
+                        style={{ 
+                            height: 22, 
+                            cursor: 'pointer' ,
+                            display: 'initial'
+                        }} 
+                    />
+                    <ProfileAvatar handleClick={()=>history.push(routes.editProfile)} className={classes.avatar} />
                     {isMobile && (
                         open ? 
                         (<FiX size={32} className={classes.menuToggle} onClick={()=>setOpen(false)} />)
@@ -58,9 +57,9 @@ const NavBarLayout: FC<Props> = ({ style }) => {
         zIndex: 999,
     },
     appBar: {
-        boxShadow: 'none',
         zIndex: 990,
         backgroundColor: colors.white,
+        boxShadow: '0px 2px 4px rgba(194, 194, 194, 0.25)',
     },
     connectWallet: {
         width: 238,
@@ -106,6 +105,15 @@ const NavBarLayout: FC<Props> = ({ style }) => {
             justifyContent: 'center',
         }
     },
+    avatar: {
+        height: 44,
+        width: 44,
+        marginBottom: 0,
+        cursor: 'pointer',
+        '&:hover': {
+            outline: `3px solid ${colors.purple}`
+        }
+    }
   }))
 
 export default NavBarLayout;
