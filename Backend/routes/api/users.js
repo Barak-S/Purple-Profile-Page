@@ -15,7 +15,6 @@ router.get('/:id', (req, res)=>{
 })
 
 router.put('/update/:id', (req,res)=>{
-    console.log(req.body.user)
     User.findOneAndUpdate({ _id: ObjectId(req.params.id) }, {$set: req.body.user }, { upsert: true })
         .then(result => {
             res.send(result)

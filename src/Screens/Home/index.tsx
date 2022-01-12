@@ -14,9 +14,6 @@ interface Props extends StyleProps {
 const Home: FC<Props> = ({ user }) => {
     const classes = useStyles()
 
-    // remove before submit
-    useEffect(()=>console.log(user),[user])
-
     return (
         <div className={classes.container}>
             <div className={classes.paperForm1}>
@@ -176,7 +173,6 @@ const useStyles = makeStyles(theme => ({
         padding: 20,
         maxWidth: 594,
         width: '100%',
-        // height: 595,
         background: colors.darkGrey,
         borderRadius: 8,
     },

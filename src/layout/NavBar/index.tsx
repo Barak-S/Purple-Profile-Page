@@ -61,28 +61,6 @@ const NavBarLayout: FC<Props> = ({ style }) => {
         backgroundColor: colors.white,
         boxShadow: '0px 2px 4px rgba(194, 194, 194, 0.25)',
     },
-    connectWallet: {
-        width: 238,
-        height: 72,
-        border: `3px solid ${colors.white}`,
-        backgroundColor: colors.white,
-        color: colors.black,
-        fontWeight: 500,
-        borderRadius: 36,
-        marginLeft: 41,
-        fontSize: 19,
-        '&:hover': {
-            backgroundColor: '#464545',
-            color: colors.white,
-        },
-        [theme.breakpoints.down('sm')]: {
-            border: `3px solid ${colors.white}`,
-            backgroundColor: colors.black,
-            color: colors.white,
-            margin: '0 auto',
-            marginBottom: 16,
-        }
-    },
     menuToggle: {
         position: 'absolute',
         left: 10

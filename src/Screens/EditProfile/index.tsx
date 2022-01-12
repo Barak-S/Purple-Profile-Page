@@ -84,7 +84,7 @@ const Home: FC<Props> = ({ user, updateUser }) => {
                             />
                         </FormLayout>
                         <div style={{ marginTop: 20, display: 'flex', justifyContent: 'end' }}>
-                            <Button onClick={(e:any)=>handleSubmit(e)}>Save</Button>
+                            <Button className={classes.submitBtn} onClick={(e:any)=>handleSubmit(e)}>Save</Button>
                         </div>
                     </div>
                 </div>
@@ -212,6 +212,17 @@ const useStyles = makeStyles(theme => ({
         width: 84,
         height: 84,
         marginBottom: 19,
+    },
+    submitBtn: {
+        backgroundColor: colors.purple,
+        color: colors.white,
+        width: 115,
+        height: 42,
+        fontSize: 18,
+        borderRadius: 8,
+        '&:hover':{
+            backgroundColor: colors.black
+        }
     }
 }))
 
